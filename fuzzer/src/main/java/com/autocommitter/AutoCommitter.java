@@ -56,10 +56,11 @@ public class AutoCommitter {
 
 	private static void triggerJenkinsBuild() {
 		try {
-			URL url = new URL("jenkins_url");
+			//update token 
+			URL url = new URL("http://localhost:8080/job/iTrust2/build?token=authtoken");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + url);
+			//System.out.println("\nSending 'GET' request to URL : " + url);
 			System.out.println("Response Code : " + responseCode);
 		} catch (Exception e) {
 			e.printStackTrace();
