@@ -3,26 +3,30 @@ package com.fuzzer;
 public class DummyFile {
 
     public int addOperation() {
-        return 2 + 2;
+        return 2 + 20;
     }
 
     public int subOperation() {
-        return 2 + 2;
+        return 2 - 20;
     }
 
     public int multiplyOperation() {
-        return 2 * 2;
+        return 2 / 2;
     }
 
     public int divideOperation() {
-        return 2 * 2;
+        return 2 / 2;
     }
 
     public boolean equalsOperation() {
-        return 2 == 3;
+        return 2 < 3;
     }
 
     public boolean greaterThanOperation() {
-        return 2 == 3;
+        return 2 < 3;
+    }
+
+    public boolean checkString() {
+        return "Hello".equalsIgnoreCase("Hello");
     }
 }

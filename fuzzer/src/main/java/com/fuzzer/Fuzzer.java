@@ -3,6 +3,7 @@ package com.fuzzer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Random;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -11,48 +12,62 @@ import com.github.javaparser.ast.expr.BinaryExpr.Operator;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class Fuzzer {
-	public static void listOperations(File projectDir) {
+
+	public static void filesFuzzer(File projectDir) {
 		new DirExplorer((level, path, file) -> path.endsWith(".java"), (level, path, file) -> {
-			System.out.println("Path: " + path);
-			CompilationUnit cu = null;
-			try {
-				cu = JavaParser.parse(file);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			try {
-				new VoidVisitorAdapter<Object>() {
-					@Override
-					public void visit(BinaryExpr n, Object arg) {
-						super.visit(n, arg);
-						if (n.getOperator().equals(Operator.PLUS)) {
-							n.setOperator(Operator.MINUS);
-						} else if (n.getOperator().equals(Operator.MINUS)) {
-							n.setOperator(Operator.PLUS);
-						} else if (n.getOperator().equals(Operator.MULTIPLY)) {
-							n.setOperator(Operator.DIVIDE);
-						} else if (n.getOperator().equals(Operator.DIVIDE)) {
-							n.setOperator(Operator.MULTIPLY);
-						} else if (n.getOperator().equals(Operator.EQUALS)) {
-							n.setOperator(Operator.GREATER);
-						} else if (n.getOperator().equals(Operator.GREATER)) {
-							n.setOperator(Operator.EQUALS);
+			
+			//File ignored at p > 0.8
+			if (lowProbabilityBoolean()) {
+				System.out.println("Path: " + path);
+				CompilationUnit cu = null;
+				try {
+					cu = JavaParser.parse(file);
+					new VoidVisitorAdapter<Object>() {
+
+						@Override
+						public void visit(BinaryExpr n, Object arg) {
+							super.visit(n, arg);
+							if (randomBoolean() && n.getOperator().equals(Operator.PLUS)) {
+								n.setOperator(Operator.MINUS);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.MINUS)) {
+								n.setOperator(Operator.PLUS);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.MULTIPLY)) {
+								n.setOperator(Operator.DIVIDE);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.DIVIDE)) {
+								n.setOperator(Operator.MULTIPLY);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.EQUALS)) {
+								n.setOperator(Operator.NOT_EQUALS);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.GREATER)) {
+								n.setOperator(Operator.LESS);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.NOT_EQUALS)) {
+								n.setOperator(Operator.GREATER);
+							}
+							if (randomBoolean() && n.getOperator().equals(Operator.LESS_EQUALS)) {
+								n.setOperator(Operator.EQUALS);
+							}
 						}
-					}
-				}.visit(cu, null);
-			} catch (Exception e) {
-				e.printStackTrace();
+					}.visit(cu, null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				saveFuzzedCode(file, cu.toString());
+			} else {
+				System.out.println("Skipped");
 			}
-			saveToFile(file, cu.toString());
 		}).explore(projectDir);
 	}
 
-	private static void saveToFile(File file, String modifiedCode) {
+	private static void saveFuzzedCode(File file, String modifiedCode) {
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 			writer.write(modifiedCode);
-			// System.out.println("Code: " + modifiedCode);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -65,10 +80,11 @@ public class Fuzzer {
 		}
 	}
 
-	public static void main(String[] args) {
-		File projectDir = new File(
-				"C:/Users/shash/DevOps/milestone-2/BuildTestAnalysis/fuzzer/src/main/resources/com/fuzzer/");
-		System.out.println("ProjectDir: " + projectDir);
-		listOperations(projectDir);
+	private static boolean randomBoolean() {
+		return new Random().nextBoolean();
+	}
+
+	private static boolean lowProbabilityBoolean() {
+		return new Random().nextInt(100) > 80;
 	}
 }
