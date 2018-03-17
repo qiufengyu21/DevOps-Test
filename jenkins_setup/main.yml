@@ -25,6 +25,7 @@
       url_username: "{{ jenkins_admin_username }}"
       validate_certs: no
     groovy_file_path: "{{ playbook_dir }}/templates"
+    fuzzer_file_path: "BuildTestAnalysis/src/main/java/com/fuzzer/AutoCommitter.java"
     dir: "{{ playbook_dir }}/jobs"
 
   tasks:
@@ -35,3 +36,4 @@
     - import_tasks: tasks/clideps.yml
     - import_tasks: tasks/appdeps.yml
     - import_tasks: tasks/jobs.yml
+    - import_tasks: tasks/fuzzer.yml

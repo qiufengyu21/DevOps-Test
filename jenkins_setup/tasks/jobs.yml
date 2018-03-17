@@ -8,3 +8,7 @@
 #  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
 - name: run itrust2
   shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
+
+- name: HACK wait for build to finish
+  pause:
+    prompt: "Has iTrust2-v2 finished building?"

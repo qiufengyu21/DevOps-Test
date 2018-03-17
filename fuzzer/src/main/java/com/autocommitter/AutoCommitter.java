@@ -15,14 +15,14 @@ public class AutoCommitter {
 
 	public static void main(String[] args) throws Exception {
 
-		int fuzzCount = 100;
+		int fuzzCount = 1;
 
 		for (int i = 0; i < fuzzCount; i++) {
 			// Creation of a temp folder that will contain the Git repository
 			
 			// System.out.println("Credentials: " + System.getenv("GITAUTH"));
 
-			String workspace = "/var/lib/jenkins/workspace/";
+			String workspace = "/var/lib/jenkins/workspace/iTrust2-v2";
 			File workingDirectory = new File(workspace);
 			Git git = Git.open(new File (workspace + "/.git"));
 			System.out.println("Git opened");
@@ -57,7 +57,7 @@ public class AutoCommitter {
 	private static void triggerJenkinsBuild() {
 		try {
 			//update token 
-			URL url = new URL("http://localhost:8080/job/iTrust2/build?token=authtoken");
+			URL url = new URL("http://localhost:9080/job/iTrust2-v2/build?token=trigger_token");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			int responseCode = con.getResponseCode();
 			//System.out.println("\nSending 'GET' request to URL : " + url);
