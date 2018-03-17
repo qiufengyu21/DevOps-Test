@@ -11,6 +11,7 @@
     path: "/etc/default/jenkins"
     regexp: 'HTTP_PORT='
     line: 'HTTP_PORT={{ jenkins_http_port }}'
+  become: yes
 
 - name: Create Groovy Script directory
   file:
@@ -50,3 +51,4 @@
       }
     user: "{{ jenkins_admin_username }}"
     password: "{{ jenkins_admin_password }}"
+    url: "http://{{jenkins_hostname}}:{{ jenkins_http_port }}"
