@@ -6,6 +6,12 @@
     line: "{{ jenkins_java_args }}"
   become: yes
 
+- name: Change jenkins port
+  lineinfile:
+    path: "/etc/default/jenkins"
+    regexp: 'HTTP_PORT='
+    line: 'HTTP_PORT={{ jenkins_http_port }}'
+
 - name: Create Groovy Script directory
   file:
     path: "{{ jenkins_home }}/init.groovy.d"

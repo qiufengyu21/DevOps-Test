@@ -14,10 +14,11 @@
       - github
       - postbuildscript
       - postbuild-task
+      - jacoco
     jenkins_java_args: 'JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"'
     jenkins_home: /var/lib/jenkins
     jenkins_hostname: 127.0.0.1
-    jenkins_http_port: 8080
+    jenkins_http_port: 9080
     jenkins_jar_location: "{{ ansible_env.HOME }}/jenkins-cli.jar"
     jenkins_default_file: /etc/default/jenkins
     jenkins_params:
@@ -33,3 +34,4 @@
     - import_tasks: tasks/plugins.yml
     - import_tasks: tasks/clideps.yml
     - import_tasks: tasks/appdeps.yml
+    - import_tasks: tasks/jobs.yml
