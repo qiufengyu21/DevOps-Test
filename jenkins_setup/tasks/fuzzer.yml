@@ -1,4 +1,2 @@
-- name: Compile fuzzer
-  shell: "javac {{ ansible_env.HOME }}/{{ fuzzer_file_path }}"
 - name: Run fuzzer
-  shell: "java {{ ansible_env.HOME }}/{{ fuzzer_file_path }}"
+  shell: "java -jar {{ ansible_env.HOME }}/{{ fuzzer_file_path }}"
