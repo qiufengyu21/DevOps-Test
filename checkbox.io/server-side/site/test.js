@@ -14,6 +14,9 @@ console.log('After stub');
 
 let create = require('E:/Courses/CSC_519_DevOps/Project_ML2/ML2/BuildTestAnalysis/checkbox.io/server-side/site/routes/create.js');
 let admin = require('E:/Courses/CSC_519_DevOps/Project_ML2/ML2/BuildTestAnalysis/checkbox.io/server-side/site/routes/admin.js');
+let admin = require('E:/Courses/CSC_519_DevOps/Project_ML2/ML2/BuildTestAnalysis/checkbox.io/server-side/site/routes/study.js');
+
+
 try {
     var bodyObj = {invitecode:"RESEARCH", studyKind: "dataStudy"};
     var req = {body: bodyObj};
@@ -155,6 +158,89 @@ try{
     bodyObj = {email: "abc@gmail.com",kind:"BROWSERSTACK"};
     req = {body: bodyObj};
     admin.notifyParticipant(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    admin.listing("","");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    bodyObj = {};
+    req = {body: bodyObj};
+    admin.listing(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    paramObj = {id: "exists"};
+    req = {params: paramObj};
+    admin.loadStudy(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    paramObj = {id: "notExists"};
+    req = {params: paramObj};
+    admin.loadStudy(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    paramObj = {id: "exists"};
+    req = {params: paramObj};
+    admin.status(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    paramObj = {id: "notExists"};
+    req = {params: paramObj};
+    admin.status(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    queryObj = {studyId: "exists", fingerprint:"exists"};
+    connectionObj = "0.0.0.0";
+    req = {params: paramObj, connection:connectionObj};
+    admin.voteStatus(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    queryObj = {studyId: "exists", fingerprint:"notExists"};
+    connectionObj = "0.0.0.0";
+    req = {params: paramObj, connection:connectionObj};
+    admin.voteStatus(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    bodyObj = {studyId: "notExists", fingerprint:"notExists",answers:"",email:"abc@gmail.com",contact:"1234567890"};
+    connectionObj = "0.0.0.0";
+    fileObj = {files: "fakeNonEmptyFilePath"};
+    req = {params: bodyObj, connection:connectionObj, files:fileObj};
+    admin.submitVote(req,"");
+}catch (e){
+    console.log(e);
+}
+
+try{
+    bodyObj = {studyId: "notExists", fingerprint:"notExists",answers:"",email:"abc@gmail.com",contact:"1234567890"};
+    connectionObj = "0.0.0.0";
+    req = {params: bodyObj, connection:connectionObj};
+    admin.submitVote(req,"");
 }catch (e){
     console.log(e);
 }
