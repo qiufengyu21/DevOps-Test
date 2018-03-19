@@ -20,7 +20,6 @@ function generateTestCases(filepath, functionConstraints) {
 
     // Iterate over each function in functionConstraints
     for (let funcName in functionConstraints) {
-
         // Reference all constraints for funcName.
         let params = functionConstraints[funcName].params;
 
@@ -37,7 +36,7 @@ function generateTestCases(filepath, functionConstraints) {
             // Get final argument string
             let args = combination.join(', ');
 
-            content += `try { ${"subject.{0}({1});".format(funcName, args)} } catch (e) {} \n\n`;
+            content += `try { ${"create.{0}({1});".format(funcName, args)} } catch (e) {} \n\n`;
 
         }
 

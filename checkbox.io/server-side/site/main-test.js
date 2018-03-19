@@ -15,8 +15,6 @@ const generateTestCases = require('./testutils/testgenerator');
 // Polyfills
 require('./testutils/format-polyfill');
 
-
-
 /**
  * Parse an input file and generate test cases for it.
  */
