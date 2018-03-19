@@ -1,6 +1,4 @@
-console.log('Start of test')
 let sinon = require('sinon');
-console.log('Before stub');
 var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient;
 

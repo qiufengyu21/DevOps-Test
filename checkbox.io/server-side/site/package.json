@@ -16,6 +16,10 @@
     "mongodb": "^2.2.22",
     "sinon": "4.4.6",
     "underscore": "^1.8.3",
-    "validator": "^6.2.1"
+    "validator": "^6.2.1",
+    "esprima": "^3.0.0",
+    "lodash": "^4.17.5",
+    "random-js": "^1.0.8",
+    "iter-tools": "^1.4.1"
   }
 }
