@@ -1,14 +1,31 @@
 ---
-#- name: configure checkboxio
-#  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ dir }}/checkboxio-job.xml"
-- name: configure itrust2
-  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ dir }}/iTrust2-v2.xml"
+- name: copy iTrust locally
+  git:
+    repo: "http://github.com/karanjadhav2508/iTrust2-v2"
+    version: "fuzzer"
+    dest: "{{ ansible_env.HOME }}/iTrust2-v2"
 
-#- name: run checkbox
-#  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
+- name: copy iTrust xml
+  template:
+    src: "{{ playbook_dir }}/jobs/iTrust2-v2.xml"
+    dest: "{{ ansible_env.HOME }}/"
+
+- name: configure itrust2
+  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ ansible_env.HOME }}/iTrust2-v2.xml"
+
+- name: delete iTrust xml
+  file:
+    path: "{{ ansible_env.HOME }}/iTrust2-v2.xml"
+    state: absent
+
 - name: run itrust2
   shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
 
 - name: HACK wait for build to finish
   pause:
     prompt: "Has iTrust2-v2 finished building?"
+
+#- name: configure checkboxio
+#  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ dir }}/checkboxio-job.xml"
+#- name: run checkbox
+#  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
