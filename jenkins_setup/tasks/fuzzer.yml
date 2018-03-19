@@ -1,2 +1,6 @@
+- name: copy fuzzer jar
+  copy:
+    src: "{{ playbook_dir }}/../fuzzer/fuzzer.jar"
+
 - name: Run fuzzer
-  shell: "java -jar {{ playbook_dir }}/fuzzer/fuzzer.jar"
+  shell: "java -jar {{ ansible_env.HOME }}/fuzzer.jar"
