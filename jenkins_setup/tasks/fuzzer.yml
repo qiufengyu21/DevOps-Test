@@ -1,2 +1,2 @@
 - name: Run fuzzer
-  shell: "java -jar {{ ansible_env.HOME }}/{{ fuzzer_file_path }}"
+  shell: "java -jar {{ playbook_dir }}/fuzzer/fuzzer.jar"
