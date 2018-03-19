@@ -1,6 +1,7 @@
 - name: copy fuzzer jar
   copy:
     src: "{{ playbook_dir }}/../fuzzer/fuzzer.jar"
+    dest: "{{ ansible_env.HOME }}/"
 
 - name: Run fuzzer
   shell: "java -jar {{ ansible_env.HOME }}/fuzzer.jar"
