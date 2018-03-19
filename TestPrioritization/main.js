@@ -26,22 +26,31 @@ function readResults(result,tests,isFirstTime)
     return tests;    
 }
 
-async function calculatePriority()
-{
-    var tests = [];
-    for(var i = 1; i <= 3; i++){
-        var contents = fs.readFileSync(__dirname + reportDir + i + fileName);
-        let xml2json = await Bluebird.fromCallback(cb => parser.parseString(contents, cb));
-        var isFirstTime = false;
-        if(i == 1)
-            isFirstTime = true;
-        tests = readResults(xml2json,tests,isFirstTime);
-    }
-
-    tests.forEach( e => console.log(e));
-    tests.sort(function(a,b){
-        
-        return  b["timeFailed"] - a["timeFailed"] || b["timePassed"] - a["timePassed"] || b["time"] - a["time"];
+function calculatePriority()
+{    
+    getTestResults(async function(contents){
+        var tests = [];
+        for(var i = 0; i < contents.length; i++){
+            let xml2json = await Bluebird.fromCallback(cb => parser.parseString(contents[i], cb));
+            var isFirstTime = false;
+            if(i == 0)
+                isFirstTime = true;
+            tests = readResults(xml2json,tests,isFirstTime);
+        }
+        tests.sort(function(a,b){
+            
+            return  b["timeFailed"] - a["timeFailed"] || b["timePassed"] - a["timePassed"] || a["time"] - b["time"];
+        });
+        tests.forEach( e => console.log(e));
     });
-    tests.forEach( e => console.log(e));
+}
+
+function getTestResults(callback){
+    fs.readdir(__dirname + reportDir, (err, dirs) => {
+        var contents=[];
+        for(var i = 0; i < dirs.length; i++){
+            contents.push(fs.readFileSync(__dirname + reportDir + dirs[i] + fileName));
+        }
+        return callback(contents);
+    }); 
 }
