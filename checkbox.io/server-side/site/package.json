@@ -8,18 +8,20 @@
     "async": "^2.1.4",
     "cors": "^2.7.1",
     "emailjs": "^1.0.8",
+    "esprima": "^3.0.0",
     "express": "3.x",
     "istanbul": "^0.4.5",
+    "iter-tools": "^1.4.1",
     "jade": "^1.11.0",
     "json5": "^0.5.1",
+    "lodash": "^4.17.5",
     "marked": "0.3.9",
     "mongodb": "^2.2.22",
+    "random-js": "^1.0.8",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
     "sinon": "4.4.6",
     "underscore": "^1.8.3",
-    "validator": "^6.2.1",
-    "esprima": "^3.0.0",
-    "lodash": "^4.17.5",
-    "random-js": "^1.0.8",
-    "iter-tools": "^1.4.1"
+    "validator": "^6.2.1"
   }
 }
