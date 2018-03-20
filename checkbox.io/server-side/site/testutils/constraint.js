@@ -58,7 +58,7 @@ function constraints(filePath) {
 
             // Get function name and arguments
             let params = node.expression.right.params.map(function (p) { return p.name });
-            console.log('params: ' + params);
+            //console.log('params: ' + params);
 
             //Initialize function constraints
             functionConstraints[funcName] = {
@@ -75,14 +75,14 @@ function constraints(filePath) {
 
                         // Get identifier
                         let ident = child.left.name;
-                        console.log('ident: ' + ident);
+                        //console.log('ident: ' + ident);
 
                         // Get expression from original source code:
                         let expression = buf.substring(child.range[0], child.range[1]);
-                        console.log('exp: ' + expression);
+                        //console.log('exp: ' + expression);
 
                         let rightHand = buf.substring(child.right.range[0], child.right.range[1]);
-                        console.log('right: ' + rightHand);
+                        //console.log('right: ' + rightHand);
                         // Test to see if right hand is a string
                         let match = rightHand.match(/^['"](.*)['"]$/);
 
