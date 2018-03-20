@@ -1,12 +1,18 @@
 package com.autocommitter;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.ResetCommand;
+import org.eclipse.jgit.api.ResetCommand.ResetType;
 import org.eclipse.jgit.dircache.DirCache;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.RepositoryBuilder;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import com.fuzzer.Fuzzer;
@@ -15,53 +21,50 @@ public class AutoCommitter {
 
 	public static void main(String[] args) throws Exception {
 
-		int fuzzCount = 1;
+		//Create git repo object and set workspace to fuzz
+		String workspace = "/home/vagrant/iTrust2-v2";
+		Git git = Git.open(new File (workspace + "/.git"));
+		File workingDirectory = new File(workspace+"/iTrust2/src/main/edu/ncsu/csc/itrust");
+		
+		//Create "fuzzer" branch and get sha1
+		git.checkout().setName("fuzzer").call();
+		System.out.println("switching to " + git.getRepository().getBranch());
+		
+		int fuzzCount = 30;
 
 		for (int i = 0; i < fuzzCount; i++) {
-			// Creation of a temp folder that will contain the Git repository
-			
-			// System.out.println("Credentials: " + System.getenv("GITAUTH"));
-
-			String workspace = "/var/lib/jenkins/workspace/iTrust2-v2";
-			File workingDirectory = new File(workspace);
-			Git git = Git.open(new File (workspace + "/.git"));
-			System.out.println("Git opened");
-
-//			Files.copy(new File(
-//					"C:/Users/shash/DevOps/milestone-2/BuildTestAnalysis/fuzzer/src/main/resources/com/fuzzer/DummyFile.java")
-//							.toPath(),
-//					new File(workingDirectory + "/DummyFile.java").toPath(), StandardCopyOption.REPLACE_EXISTING);
-//			System.out.println("File copied");
-			
+			//reset
+			git.reset().setMode(ResetType.HARD).setRef("refs/heads/master").call();
+			//fuzz files
 			Fuzzer.filesFuzzer(workingDirectory);
-
-			Ref ref = git.checkout().setCreateBranch(true).setName("fuzzedBranch").call();
-
-			DirCache index = git.add().addFilepattern(".").call();
-			RevCommit commit = git.commit().setMessage("Commit number: " + i).call();
-			System.out.println("Git committed number: " + i);
-
-//			PushCommand pushCommand = git.push();
-//			pushCommand.setCredentialsProvider(credentialsProvider);
-//			pushCommand.call();
-//			System.out.println("Git pushed");
-
+			//track and commit
+			git.add().addFilepattern(".").call();
+			git.commit().setMessage("Commit number: " + i).call();
+			//trigger build
 			triggerJenkinsBuild();
-
-			//letting jenkins finish up the built
-			Thread.sleep(10 * 1000);
 			
+			Thread.sleep(660 * 1000);
+			copyReports(i);
+		}
+	}
+	
+	private static void copyReports(int iterNum) {
+		try {
+			FileUtils.copyFile(new File("/var/lib/jenkins/workspace/iTrust2-v2/iTrust2/target/site/jacoco-it/jacoco.xml"), new File("/home/vagrant/sample_reports/jacoco-it/"+iterNum+".xml"));
+			FileUtils.copyFile(new File("/var/lib/jenkins/workspace/iTrust2-v2/iTrust2/target/site/jacoco-it/jacoco.csv"), new File("/home/vagrant/sample_reports/jacoco-it/"+iterNum+".csv"));
+			FileUtils.copyFile(new File("/var/lib/jenkins/workspace/iTrust2-v2/iTrust2/target/site/jacoco-ut/jacoco.xml"), new File("/home/vagrant/sample_reports/jacoco-ut/"+iterNum+".xml"));
+			FileUtils.copyFile(new File("/var/lib/jenkins/workspace/iTrust2-v2/iTrust2/target/site/jacoco-ut/jacoco.csv"), new File("/home/vagrant/sample_reports/jacoco-ut/"+iterNum+".csv"));
+		} catch (IOException i) {
+			i.printStackTrace();
 		}
 	}
 
 	private static void triggerJenkinsBuild() {
 		try {
 			//update token 
-			URL url = new URL("http://localhost:9080/job/iTrust2-v2/build?token=trigger_token");
+			URL url = new URL("http://127.0.0.1:9080/job/iTrust2-v2/build?token=trigger_token");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			int responseCode = con.getResponseCode();
-			//System.out.println("\nSending 'GET' request to URL : " + url);
-			System.out.println("Response Code : " + responseCode);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
