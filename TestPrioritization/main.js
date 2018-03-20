@@ -14,13 +14,13 @@ function readResults(result,tests,isFirstTime)
     {
         var testcase = result.testsuite.testcase[i];
         if(isFirstTime){
-            test = {name:testcase['$'].name,time: parseFloat(testcase['$'].time),timePassed:0,timeFailed:0};
-            testcase.hasOwnProperty('failure') ? test.timeFailed++ : test.timePassed++;
+            test = {name:testcase['$'].name,total_time: parseFloat(testcase['$'].time),time_passed:0,time_failed:0,avg_time: parseFloat(testcase['$'].time)};
+            testcase.hasOwnProperty('failure') ? test.time_failed++ : test.time_passed++;
             tests.push(test);
         }else{
             testIndex = tests.findIndex((testObj => testObj.name == testcase['$'].name));
-            tests[testIndex].time = tests[testIndex].time + parseFloat(testcase['$'].time);
-            testcase.hasOwnProperty('failure') ? tests[testIndex].timeFailed++ : tests[testIndex].timePassed++;
+            tests[testIndex].total_time = tests[testIndex].total_time + parseFloat(testcase['$'].time);
+            testcase.hasOwnProperty('failure') ? tests[testIndex].time_failed++ : tests[testIndex].time_passed++;
         }
     }
     return tests;    
@@ -37,10 +37,17 @@ function calculatePriority()
                 isFirstTime = true;
             tests = readResults(xml2json,tests,isFirstTime);
         }
-        tests.sort(function(a,b){
-            
-            return  b["timeFailed"] - a["timeFailed"] || b["timePassed"] - a["timePassed"] || a["time"] - b["time"];
+        
+        //Calculate Average Running Time
+        for(test in tests){
+            tests[test].avg_time = parseFloat((tests[test].total_time / contents.length).toFixed(2));
+        }
+        
+        //Prioritize
+        tests.sort(function(a,b){        
+            return  b["time_failed"] - a["time_failed"] || b["time_passed"] - a["time_passed"] || a["avg_time"] - b["avg_time"];
         });
+        
         tests.forEach( e => console.log(e));
     });
 }
