@@ -3,7 +3,7 @@
   git:
     repo: "http://github.com/karanjadhav2508/iTrust2-v2"
     version: "fuzzer"
-    dest: "{{ ansible_env.HOME }}/iTrust2-v2"
+    dest: "{{ ansible_env.HOME }}/{{ job_name }}"
 
 - name: copy iTrust xml
   template:
