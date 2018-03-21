@@ -3,10 +3,15 @@ var fs = require('fs'),
     child  = require('child_process'); 
 var parser = new xml2js.Parser();
 var Bluebird = require('bluebird');
-var reportDir = process.argv.slice(2,3)[0] + '/builds/';
+var args = process.argv.slice(2,3)[0];
+var reportDir = args + '/builds/';
 var fileName = '/junitResult.xml';
 
-calculatePriority();
+if(!args){
+    console.log("Please pass directory path containing build info as an argument.");
+}else{
+    calculatePriority();
+}
 
 function calculatePriority()
 {    
@@ -37,9 +42,16 @@ function calculatePriority()
 
 function getTestResults(callback){
     fs.readdir(reportDir, (err, dirs) => {
-        var contents=[];
-        for(var i = 0; i < dirs.length; i++){
-            contents.push(fs.readFileSync(reportDir + dirs[i] + fileName));
+        try{
+            var contents=[];
+            for(var i = 0; i < dirs.length; i++){
+                var regexp = '^([1-9]|\\d{2,})$';
+                if(dirs[i].match(regexp)){
+                    contents.push(fs.readFileSync(reportDir + dirs[i] + fileName));
+                }
+            }
+        }catch(e){
+            console.log("Please enter correct directory path.")
         }
         return callback(contents);
     }); 
