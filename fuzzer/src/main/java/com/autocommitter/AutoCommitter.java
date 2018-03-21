@@ -22,7 +22,7 @@ public class AutoCommitter {
 	public static void main(String[] args) throws Exception {
 
 		//Create git repo object and set workspace to fuzz
-		String workspace = "/home/vagrant/iTrust2-v2";
+		String workspace = "E:\\Courses\\CSC_519_DevOps\\Project_ML2\\ML2\\iTrust2-v2";
 		Git git = Git.open(new File (workspace + "/.git"));
 		File workingDirectory = new File(workspace+"/iTrust2/src/main/edu/ncsu/csc/itrust");
 		

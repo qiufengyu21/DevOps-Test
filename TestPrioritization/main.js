@@ -4,23 +4,28 @@ var fs = require('fs'),
 var parser = new xml2js.Parser();
 var Bluebird = require('bluebird');
 var reportDir =  '/Reports/';
-var fileName = '/TEST-com.github.stokito.unitTestExample.calculator.CalculatorTest.xml';
+var fileName = '/junitResult.xml';
 
 calculatePriority();
 
 function readResults(result,tests,isFirstTime)
 {
-    for( var i = 0; i < result.testsuite['$'].tests; i++ )
-    {
-        var testcase = result.testsuite.testcase[i];
-        if(isFirstTime){
-            test = {name:testcase['$'].name,total_time: parseFloat(testcase['$'].time),time_passed:0,time_failed:0,avg_time: parseFloat(testcase['$'].time)};
-            testcase.hasOwnProperty('failure') ? test.time_failed++ : test.time_passed++;
-            tests.push(test);
-        }else{
-            testIndex = tests.findIndex((testObj => testObj.name == testcase['$'].name));
-            tests[testIndex].total_time = tests[testIndex].total_time + parseFloat(testcase['$'].time);
-            testcase.hasOwnProperty('failure') ? tests[testIndex].time_failed++ : tests[testIndex].time_passed++;
+    var testSuites = result.result.suites[0].suite;
+    var testSuite = testSuites[0];
+    for(var i = 0; i < testSuites.length; i++){
+        var testSuite = testSuites[i];
+        var testCases = testSuite.cases[0].case;
+        for(var j = 0 ; j < testCases.length; j++){
+            var testCase = testCases[j];
+            if(isFirstTime){
+                test = {name:testCase.testName[0],total_time: parseFloat(testCase.duration),time_passed:0,time_failed:0,avg_time: parseFloat(testCase.duration)};
+                testCase.hasOwnProperty('failure') ? test.time_failed++ : test.time_passed++;
+                tests.push(test);
+            }else{
+                testIndex = tests.findIndex((testObj => testObj.name == testCase.testName[0]));
+                tests[testIndex].total_time = tests[testIndex].total_time + parseFloat(testCase.duration);
+                testCase.hasOwnProperty('failure') ? tests[testIndex].time_failed++ : tests[testIndex].time_passed++;
+            }
         }
     }
     return tests;    
@@ -37,15 +42,16 @@ function calculatePriority()
                 isFirstTime = true;
             tests = readResults(xml2json,tests,isFirstTime);
         }
-        
-        //Calculate Average Running Time
+
+        // Calculate Average Running Time
         for(test in tests){
             tests[test].avg_time = parseFloat((tests[test].total_time / contents.length).toFixed(2));
+            tests[test].total_time = parseFloat((tests[test].total_time).toFixed(2));
         }
         
         //Prioritize
         tests.sort(function(a,b){        
-            return  b["time_failed"] - a["time_failed"] || b["time_passed"] - a["time_passed"] || a["avg_time"] - b["avg_time"];
+            return  b["time_failed"] - a["time_failed"] || b["time_passed"] - a["time_passed"] || a["avg_time"] - b["avg_time"] || a["total_time"] - b["total_time"];
         });
         
         tests.forEach( e => console.log(e));
