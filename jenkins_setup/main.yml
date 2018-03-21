@@ -27,6 +27,9 @@
     groovy_file_path: "{{ playbook_dir }}/templates"
     fuzzer_file_path: "BuildTestAnalysis/src/main/java/com/fuzzer/AutoCommitter.java"
     dir: "{{ playbook_dir }}/jobs"
+    job_name: "iTrust2-v2"
+    git_home: "{{ ansible_env.HOME }}/{{ job_name }}"
+    trigger_token: "trigger_token"
 
   tasks:
     - import_tasks: tasks/prereqs.yml

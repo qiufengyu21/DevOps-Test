@@ -11,7 +11,7 @@
     dest: "{{ ansible_env.HOME }}/"
 
 - name: configure itrust2
-  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ ansible_env.HOME }}/iTrust2-v2.xml"
+  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job {{ job_name }} --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ ansible_env.HOME }}/iTrust2-v2.xml"
 
 - name: delete iTrust xml
   file:
@@ -19,7 +19,7 @@
     state: absent
 
 - name: run itrust2
-  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build iTrust2-v2 --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
+  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build {{ job_name }} --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
 
 - name: HACK wait for build to finish
   pause:
