@@ -1,9 +1,12 @@
 package com.autocommitter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
@@ -20,32 +23,80 @@ import com.fuzzer.Fuzzer;
 public class AutoCommitter {
 
 	public static void main(String[] args) throws Exception {
+		
+		Properties prop = getDetails();
 
 		//Create git repo object and set workspace to fuzz
-		String workspace = "E:\\Courses\\CSC_519_DevOps\\Project_ML2\\ML2\\iTrust2-v2";
+		//String workspace = "/home/vagrant/iTrust2-v2";
+		String workspace = prop.getProperty("gitHome");
 		Git git = Git.open(new File (workspace + "/.git"));
 		File workingDirectory = new File(workspace+"/iTrust2/src/main/edu/ncsu/csc/itrust");
 		
 		//Create "fuzzer" branch and get sha1
 		git.checkout().setName("fuzzer").call();
-		System.out.println("switching to " + git.getRepository().getBranch());
 		
 		int fuzzCount = 30;
+		String masterBranch = prop.getProperty("masterBranch");
 
 		for (int i = 0; i < fuzzCount; i++) {
 			//reset
-			git.reset().setMode(ResetType.HARD).setRef("refs/heads/master").call();
+			//git.reset().setMode(ResetType.HARD).setRef("refs/heads/master").call();
+			git.reset().setMode(ResetType.HARD).setRef(masterBranch).call();
 			//fuzz files
 			Fuzzer.filesFuzzer(workingDirectory);
 			//track and commit
 			git.add().addFilepattern(".").call();
 			git.commit().setMessage("Commit number: " + i).call();
 			//trigger build
-			triggerJenkinsBuild();
+			triggerJenkinsBuild(prop);
 			
 			Thread.sleep(660 * 1000);
-			copyReports(i);
 		}
+	}
+	
+	private static void triggerJenkinsBuild(Properties prop) {
+		try {
+			//update token 
+			//URL url = new URL("http://127.0.0.1:9080/job/iTrust2-v2/build?token=trigger_token");
+			String jenkinsIP = prop.getProperty("jenkinsIP");
+			String jenkinsPort = prop.getProperty("jenkinsPort");
+			String jobName = prop.getProperty("jobName");
+			String triggerToken = prop.getProperty("triggerToken");
+			URL url = new URL("http://"+jenkinsIP+":"+jenkinsPort+"/job/"+jobName+"/build?token="+triggerToken);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			int responseCode = con.getResponseCode();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static Properties getDetails() {
+		Properties prop = new Properties();
+		InputStream input = null;
+		
+		try {
+			input = new FileInputStream("./test.properties");
+			prop.load(input);
+			
+			System.out.println(prop.getProperty("gitHome"));
+			System.out.println(prop.getProperty("jenkinsIP"));
+			System.out.println(prop.getProperty("jenkinsPort"));
+			System.out.println(prop.getProperty("jobName"));
+			System.out.println(prop.getProperty("triggerToken"));
+		} catch(IOException i) {
+			i.printStackTrace();
+		} finally {
+			if(input != null) {
+				try {
+					input.close();
+				} catch(IOException i) {
+					i.printStackTrace();
+				}
+			}
+		}
+		
+		return prop;
+		
 	}
 	
 	private static void copyReports(int iterNum) {
@@ -58,16 +109,4 @@ public class AutoCommitter {
 			i.printStackTrace();
 		}
 	}
-
-	private static void triggerJenkinsBuild() {
-		try {
-			//update token 
-			URL url = new URL("http://127.0.0.1:9080/job/iTrust2-v2/build?token=trigger_token");
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			int responseCode = con.getResponseCode();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }
