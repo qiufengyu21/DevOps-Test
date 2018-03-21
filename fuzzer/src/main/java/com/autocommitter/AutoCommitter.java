@@ -10,13 +10,7 @@ import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.api.ResetCommand.ResetType;
-import org.eclipse.jgit.dircache.DirCache;
-import org.eclipse.jgit.lib.ObjectId;
-import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.lib.RepositoryBuilder;
-import org.eclipse.jgit.revwalk.RevCommit;
 
 import com.fuzzer.Fuzzer;
 
@@ -25,6 +19,11 @@ public class AutoCommitter {
 	public static void main(String[] args) throws Exception {
 		
 		Properties prop = getDetails();
+		String jenkinsIP = prop.getProperty("jenkinsIP");
+		String jenkinsPort = prop.getProperty("jenkinsPort");
+		String jobName = prop.getProperty("jobName");
+		String triggerToken = prop.getProperty("triggerToken");
+		int waitTime = Integer.parseInt(prop.getProperty("waitTime"));
 
 		//Create git repo object and set workspace to fuzz
 		//String workspace = "/home/vagrant/iTrust2-v2";
@@ -35,33 +34,27 @@ public class AutoCommitter {
 		//Create "fuzzer" branch and get sha1
 		git.checkout().setName("fuzzer").call();
 		
-		int fuzzCount = 30;
-		String masterBranch = prop.getProperty("masterBranch");
+		int fuzzCount = 1;
 
 		for (int i = 0; i < fuzzCount; i++) {
 			//reset
-			//git.reset().setMode(ResetType.HARD).setRef("refs/heads/master").call();
-			git.reset().setMode(ResetType.HARD).setRef(masterBranch).call();
+			git.reset().setMode(ResetType.HARD).setRef("refs/heads/master").call();
 			//fuzz files
 			Fuzzer.filesFuzzer(workingDirectory);
 			//track and commit
 			git.add().addFilepattern(".").call();
 			git.commit().setMessage("Commit number: " + i).call();
 			//trigger build
-			triggerJenkinsBuild(prop);
+			triggerJenkinsBuild(jenkinsIP, jenkinsPort, jobName, triggerToken);
 			
-			Thread.sleep(660 * 1000);
+			Thread.sleep(waitTime * 1000);
 		}
 	}
 	
-	private static void triggerJenkinsBuild(Properties prop) {
+	private static void triggerJenkinsBuild(String jenkinsIP, String jenkinsPort, String jobName, String triggerToken) {
 		try {
 			//update token 
 			//URL url = new URL("http://127.0.0.1:9080/job/iTrust2-v2/build?token=trigger_token");
-			String jenkinsIP = prop.getProperty("jenkinsIP");
-			String jenkinsPort = prop.getProperty("jenkinsPort");
-			String jobName = prop.getProperty("jobName");
-			String triggerToken = prop.getProperty("triggerToken");
 			URL url = new URL("http://"+jenkinsIP+":"+jenkinsPort+"/job/"+jobName+"/build?token="+triggerToken);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			int responseCode = con.getResponseCode();
