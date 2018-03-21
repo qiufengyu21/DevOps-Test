@@ -29,7 +29,7 @@ public class AutoCommitter {
 		//String workspace = "/home/vagrant/iTrust2-v2";
 		String workspace = prop.getProperty("gitHome");
 		Git git = Git.open(new File (workspace + "/.git"));
-		File workingDirectory = new File(workspace+"/iTrust2/src/main/edu/ncsu/csc/itrust");
+		File workingDirectory = new File(workspace+"/iTrust2/src/main/java/edu/ncsu/csc/itrust2");
 		
 		//Create "fuzzer" branch and get sha1
 		git.checkout().setName("fuzzer").call();
