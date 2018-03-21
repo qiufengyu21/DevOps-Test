@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.BinaryExpr.Operator;
+import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class Fuzzer {
@@ -51,6 +53,12 @@ public class Fuzzer {
 							if (randomBoolean() && n.getOperator().equals(Operator.LESS_EQUALS)) {
 								n.setOperator(Operator.EQUALS);
 							}
+						}
+						public void visit(StringLiteralExpr n, Object arg) {
+							super.visit(n, arg);
+							System.out.println("Expression: "+n);
+							n.setString(StringUtils.reverse(n.getValue()));
+							System.out.println("Expression: "+n);
 						}
 					}.visit(cu, null);
 				} catch (Exception e) {
