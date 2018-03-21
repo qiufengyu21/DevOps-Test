@@ -3,33 +3,10 @@ var fs = require('fs'),
     child  = require('child_process'); 
 var parser = new xml2js.Parser();
 var Bluebird = require('bluebird');
-var reportDir =  '/Reports/';
+var reportDir = process.argv.slice(2,3)[0] + '/builds/';
 var fileName = '/junitResult.xml';
 
 calculatePriority();
-
-function readResults(result,tests,isFirstTime)
-{
-    var testSuites = result.result.suites[0].suite;
-    var testSuite = testSuites[0];
-    for(var i = 0; i < testSuites.length; i++){
-        var testSuite = testSuites[i];
-        var testCases = testSuite.cases[0].case;
-        for(var j = 0 ; j < testCases.length; j++){
-            var testCase = testCases[j];
-            if(isFirstTime){
-                test = {name:testCase.testName[0],total_time: parseFloat(testCase.duration),time_passed:0,time_failed:0,avg_time: parseFloat(testCase.duration)};
-                testCase.hasOwnProperty('failure') ? test.time_failed++ : test.time_passed++;
-                tests.push(test);
-            }else{
-                testIndex = tests.findIndex((testObj => testObj.name == testCase.testName[0]));
-                tests[testIndex].total_time = tests[testIndex].total_time + parseFloat(testCase.duration);
-                testCase.hasOwnProperty('failure') ? tests[testIndex].time_failed++ : tests[testIndex].time_passed++;
-            }
-        }
-    }
-    return tests;    
-}
 
 function calculatePriority()
 {    
@@ -59,11 +36,35 @@ function calculatePriority()
 }
 
 function getTestResults(callback){
-    fs.readdir(__dirname + reportDir, (err, dirs) => {
+    fs.readdir(reportDir, (err, dirs) => {
         var contents=[];
         for(var i = 0; i < dirs.length; i++){
-            contents.push(fs.readFileSync(__dirname + reportDir + dirs[i] + fileName));
+            contents.push(fs.readFileSync(reportDir + dirs[i] + fileName));
         }
         return callback(contents);
     }); 
+}
+
+function readResults(result,tests,isFirstTime)
+{
+    var testSuites = result.result.suites[0].suite;
+    var testSuite = testSuites[0];
+    for(var i = 0; i < testSuites.length; i++){
+        var testSuite = testSuites[i];
+        var testCases = testSuite.cases[0].case;
+        for(var j = 0 ; j < testCases.length; j++){
+            var testCase = testCases[j];
+            var hasFailed = testCase.hasOwnProperty('errorStackTrace') || testCase.hasOwnProperty('errorDetails') || testCase.hasOwnProperty('stderr');
+            if(isFirstTime){
+                test = {name:testCase.testName[0],total_time: parseFloat(testCase.duration),time_passed:0,time_failed:0,avg_time: parseFloat(testCase.duration)};
+                hasFailed ? test.time_failed++ : test.time_passed++;
+                tests.push(test);
+            }else{
+                testIndex = tests.findIndex((testObj => testObj.name == testCase.testName[0]));
+                tests[testIndex].total_time = tests[testIndex].total_time + parseFloat(testCase.duration);
+                hasFailed ? tests[testIndex].time_failed++ : tests[testIndex].time_passed++;
+            }
+        }
+    }
+    return tests;    
 }
