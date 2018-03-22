@@ -9,7 +9,9 @@
     dest: "{{ ansible_env.HOME }}/"
 
 - name: Run fuzzer
-  shell: "java -jar {{ ansible_env.HOME }}/fuzzer.jar"
+  shell: "java -jar fuzzer.jar"
+  args:
+    chdir: "{{ ansible_env.HOME }}"
 
 - name: Install test prioritization code dependancy
   shell: "npm install"
