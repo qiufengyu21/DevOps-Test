@@ -1,0 +1,1226 @@
+{
+    "type": "Program",
+    "body": [
+        {
+            "type": "VariableDeclaration",
+            "declarations": [
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "express"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "express",
+                                "raw": "'express'"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "cors"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "cors",
+                                "raw": "'cors'"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "marqdown"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "./marqdown.js",
+                                "raw": "'./marqdown.js'"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "create"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "./routes/create.js",
+                                "raw": "'./routes/create.js'"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "study"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "./routes/study.js",
+                                "raw": "'./routes/study.js'"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "admin"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "require"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Literal",
+                                "value": "./routes/admin.js",
+                                "raw": "'./routes/admin.js'"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "kind": "var"
+        },
+        {
+            "type": "VariableDeclaration",
+            "declarations": [
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "init": {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "express"
+                        },
+                        "arguments": []
+                    }
+                }
+            ],
+            "kind": "var"
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "configure"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "FunctionExpression",
+                        "id": null,
+                        "params": [],
+                        "body": {
+                            "type": "BlockStatement",
+                            "body": [
+                                {
+                                    "type": "ExpressionStatement",
+                                    "expression": {
+                                        "type": "CallExpression",
+                                        "callee": {
+                                            "type": "MemberExpression",
+                                            "computed": false,
+                                            "object": {
+                                                "type": "Identifier",
+                                                "name": "app"
+                                            },
+                                            "property": {
+                                                "type": "Identifier",
+                                                "name": "use"
+                                            }
+                                        },
+                                        "arguments": [
+                                            {
+                                                "type": "CallExpression",
+                                                "callee": {
+                                                    "type": "MemberExpression",
+                                                    "computed": false,
+                                                    "object": {
+                                                        "type": "Identifier",
+                                                        "name": "express"
+                                                    },
+                                                    "property": {
+                                                        "type": "Identifier",
+                                                        "name": "logger"
+                                                    }
+                                                },
+                                                "arguments": [
+                                                    {
+                                                        "type": "Literal",
+                                                        "value": "dev",
+                                                        "raw": "'dev'"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "ExpressionStatement",
+                                    "expression": {
+                                        "type": "CallExpression",
+                                        "callee": {
+                                            "type": "MemberExpression",
+                                            "computed": false,
+                                            "object": {
+                                                "type": "Identifier",
+                                                "name": "app"
+                                            },
+                                            "property": {
+                                                "type": "Identifier",
+                                                "name": "use"
+                                            }
+                                        },
+                                        "arguments": [
+                                            {
+                                                "type": "CallExpression",
+                                                "callee": {
+                                                    "type": "MemberExpression",
+                                                    "computed": false,
+                                                    "object": {
+                                                        "type": "Identifier",
+                                                        "name": "express"
+                                                    },
+                                                    "property": {
+                                                        "type": "Identifier",
+                                                        "name": "bodyParser"
+                                                    }
+                                                },
+                                                "arguments": []
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "generator": false,
+                        "expression": false,
+                        "async": false
+                    }
+                ]
+            }
+        },
+        {
+            "type": "VariableDeclaration",
+            "declarations": [
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "whitelist"
+                    },
+                    "init": {
+                        "type": "ArrayExpression",
+                        "elements": [
+                            {
+                                "type": "Literal",
+                                "value": "http://chrisparnin.me",
+                                "raw": "'http://chrisparnin.me'"
+                            },
+                            {
+                                "type": "Literal",
+                                "value": "http://pythontutor.com",
+                                "raw": "'http://pythontutor.com'"
+                            },
+                            {
+                                "type": "Literal",
+                                "value": "http://happyface.io",
+                                "raw": "'http://happyface.io'"
+                            },
+                            {
+                                "type": "Literal",
+                                "value": "http://happyface.io:8003",
+                                "raw": "'http://happyface.io:8003'"
+                            },
+                            {
+                                "type": "Literal",
+                                "value": "http://happyface.io/hf.html",
+                                "raw": "'http://happyface.io/hf.html'"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "kind": "var"
+        },
+        {
+            "type": "VariableDeclaration",
+            "declarations": [
+                {
+                    "type": "VariableDeclarator",
+                    "id": {
+                        "type": "Identifier",
+                        "name": "corsOptions"
+                    },
+                    "init": {
+                        "type": "ObjectExpression",
+                        "properties": [
+                            {
+                                "type": "Property",
+                                "key": {
+                                    "type": "Identifier",
+                                    "name": "origin"
+                                },
+                                "computed": false,
+                                "value": {
+                                    "type": "FunctionExpression",
+                                    "id": null,
+                                    "params": [
+                                        {
+                                            "type": "Identifier",
+                                            "name": "origin"
+                                        },
+                                        {
+                                            "type": "Identifier",
+                                            "name": "callback"
+                                        }
+                                    ],
+                                    "body": {
+                                        "type": "BlockStatement",
+                                        "body": [
+                                            {
+                                                "type": "VariableDeclaration",
+                                                "declarations": [
+                                                    {
+                                                        "type": "VariableDeclarator",
+                                                        "id": {
+                                                            "type": "Identifier",
+                                                            "name": "originIsWhitelisted"
+                                                        },
+                                                        "init": {
+                                                            "type": "BinaryExpression",
+                                                            "operator": "!==",
+                                                            "left": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "Identifier",
+                                                                        "name": "whitelist"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "indexOf"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Identifier",
+                                                                        "name": "origin"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "right": {
+                                                                "type": "UnaryExpression",
+                                                                "operator": "-",
+                                                                "argument": {
+                                                                    "type": "Literal",
+                                                                    "value": 1,
+                                                                    "raw": "1"
+                                                                },
+                                                                "prefix": true
+                                                            }
+                                                        }
+                                                    }
+                                                ],
+                                                "kind": "var"
+                                            },
+                                            {
+                                                "type": "ExpressionStatement",
+                                                "expression": {
+                                                    "type": "CallExpression",
+                                                    "callee": {
+                                                        "type": "Identifier",
+                                                        "name": "callback"
+                                                    },
+                                                    "arguments": [
+                                                        {
+                                                            "type": "Literal",
+                                                            "value": null,
+                                                            "raw": "null"
+                                                        },
+                                                        {
+                                                            "type": "Identifier",
+                                                            "name": "originIsWhitelisted"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "generator": false,
+                                    "expression": false,
+                                    "async": false
+                                },
+                                "kind": "init",
+                                "method": false,
+                                "shorthand": false
+                            }
+                        ]
+                    }
+                }
+            ],
+            "kind": "var"
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "options"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/vote/submit/",
+                        "raw": "'/api/study/vote/submit/'"
+                    },
+                    {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "cors"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Identifier",
+                                "name": "corsOptions"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/design/survey",
+                        "raw": "'/api/design/survey'"
+                    },
+                    {
+                        "type": "FunctionExpression",
+                        "id": null,
+                        "params": [
+                            {
+                                "type": "Identifier",
+                                "name": "req"
+                            },
+                            {
+                                "type": "Identifier",
+                                "name": "res"
+                            }
+                        ],
+                        "body": {
+                            "type": "BlockStatement",
+                            "body": [
+                                {
+                                    "type": "ExpressionStatement",
+                                    "expression": {
+                                        "type": "CallExpression",
+                                        "callee": {
+                                            "type": "MemberExpression",
+                                            "computed": false,
+                                            "object": {
+                                                "type": "Identifier",
+                                                "name": "console"
+                                            },
+                                            "property": {
+                                                "type": "Identifier",
+                                                "name": "log"
+                                            }
+                                        },
+                                        "arguments": [
+                                            {
+                                                "type": "MemberExpression",
+                                                "computed": false,
+                                                "object": {
+                                                    "type": "MemberExpression",
+                                                    "computed": false,
+                                                    "object": {
+                                                        "type": "Identifier",
+                                                        "name": "req"
+                                                    },
+                                                    "property": {
+                                                        "type": "Identifier",
+                                                        "name": "body"
+                                                    }
+                                                },
+                                                "property": {
+                                                    "type": "Identifier",
+                                                    "name": "markdown"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "VariableDeclaration",
+                                    "declarations": [
+                                        {
+                                            "type": "VariableDeclarator",
+                                            "id": {
+                                                "type": "Identifier",
+                                                "name": "text"
+                                            },
+                                            "init": {
+                                                "type": "CallExpression",
+                                                "callee": {
+                                                    "type": "MemberExpression",
+                                                    "computed": false,
+                                                    "object": {
+                                                        "type": "Identifier",
+                                                        "name": "marqdown"
+                                                    },
+                                                    "property": {
+                                                        "type": "Identifier",
+                                                        "name": "render"
+                                                    }
+                                                },
+                                                "arguments": [
+                                                    {
+                                                        "type": "MemberExpression",
+                                                        "computed": false,
+                                                        "object": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "Identifier",
+                                                                "name": "req"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "body"
+                                                            }
+                                                        },
+                                                        "property": {
+                                                            "type": "Identifier",
+                                                            "name": "markdown"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "kind": "var"
+                                },
+                                {
+                                    "type": "ExpressionStatement",
+                                    "expression": {
+                                        "type": "CallExpression",
+                                        "callee": {
+                                            "type": "MemberExpression",
+                                            "computed": false,
+                                            "object": {
+                                                "type": "Identifier",
+                                                "name": "res"
+                                            },
+                                            "property": {
+                                                "type": "Identifier",
+                                                "name": "send"
+                                            }
+                                        },
+                                        "arguments": [
+                                            {
+                                                "type": "ObjectExpression",
+                                                "properties": [
+                                                    {
+                                                        "type": "Property",
+                                                        "key": {
+                                                            "type": "Identifier",
+                                                            "name": "preview"
+                                                        },
+                                                        "computed": false,
+                                                        "value": {
+                                                            "type": "Identifier",
+                                                            "name": "text"
+                                                        },
+                                                        "kind": "init",
+                                                        "method": false,
+                                                        "shorthand": false
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "generator": false,
+                        "expression": false,
+                        "async": false
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/load/:id",
+                        "raw": "'/api/study/load/:id'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "study"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "loadStudy"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/vote/status",
+                        "raw": "'/api/study/vote/status'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "study"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "voteStatus"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/status/:id",
+                        "raw": "'/api/study/status/:id'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "study"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "status"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/listing",
+                        "raw": "'/api/study/listing'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "study"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "listing"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/create",
+                        "raw": "'/api/study/create'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "create"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "createStudy"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/vote/submit/",
+                        "raw": "'/api/study/vote/submit/'"
+                    },
+                    {
+                        "type": "CallExpression",
+                        "callee": {
+                            "type": "Identifier",
+                            "name": "cors"
+                        },
+                        "arguments": [
+                            {
+                                "type": "Identifier",
+                                "name": "corsOptions"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "study"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "submitVote"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/:token",
+                        "raw": "'/api/study/admin/:token'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "loadStudy"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/download/:token",
+                        "raw": "'/api/study/admin/download/:token'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "download"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "get"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/assign/:token",
+                        "raw": "'/api/study/admin/assign/:token'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "assignWinner"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/open/",
+                        "raw": "'/api/study/admin/open/'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "openStudy"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/close/",
+                        "raw": "'/api/study/admin/close/'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "closeStudy"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "post"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "/api/study/admin/notify/",
+                        "raw": "'/api/study/admin/notify/'"
+                    },
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "admin"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "notifyParticipant"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "app"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "listen"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                                "type": "Identifier",
+                                "name": "process"
+                            },
+                            "property": {
+                                "type": "Identifier",
+                                "name": "env"
+                            }
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "MONGO_PORT"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "CallExpression",
+                "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "console"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "log"
+                    }
+                },
+                "arguments": [
+                    {
+                        "type": "Literal",
+                        "value": "Listening on port 3002...",
+                        "raw": "'Listening on port 3002...'"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "module"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "exports"
+                    }
+                },
+                "right": {
+                    "type": "ObjectExpression",
+                    "properties": [
+                        {
+                            "type": "Property",
+                            "key": {
+                                "type": "Identifier",
+                                "name": "start"
+                            },
+                            "computed": false,
+                            "value": {
+                                "type": "FunctionExpression",
+                                "id": null,
+                                "params": [
+                                    {
+                                        "type": "Identifier",
+                                        "name": "port"
+                                    },
+                                    {
+                                        "type": "Identifier",
+                                        "name": "needCover"
+                                    }
+                                ],
+                                "body": {
+                                    "type": "BlockStatement",
+                                    "body": []
+                                },
+                                "generator": false,
+                                "expression": false,
+                                "async": false
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": false
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "sourceType": "script"
+}
