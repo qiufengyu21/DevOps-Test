@@ -2,7 +2,7 @@
 
 [Automated Test Generation](/reports/TestGeneration.md) | [Team Details](/reports/Team.md) | [Screencast](/reports/Screencast.md)
 
-Test prioritization analysis
+Test Prioritization Analysis
 ----------------------------------
 
 [<<< Previous](/reports/Fuzzer.md) | [Next >>>](/reports/TestGeneration.md)

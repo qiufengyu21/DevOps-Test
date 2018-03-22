@@ -9,7 +9,7 @@ In this milestone, we will leverage techniques related to fuzzing, test case pri
 
 ### [Coverage/Jenkins Support](/reports/Coverage.md)
 ### [Automated Commit Generation - Commit Fuzzer](/reports/Fuzzer.md)
-### [Test prioritization analysis](/reports/TestPrioritization.md)
+### [Test Prioritization Analysis](/reports/TestPrioritization.md)
 ### [Automated Test Generation](/reports/TestGeneration.md)
 ### [Team Details](/reports/Team.md)
 ### [Screencast](/reports/Screencast.md)
