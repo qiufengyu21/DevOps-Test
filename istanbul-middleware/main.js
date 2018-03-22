@@ -30,9 +30,9 @@ require('./src/format-polyfill');
     let filePath = path.resolve(args[0]);
 
     // Initialize constraints based on input file
-    let functionConstraints = constraints(filePath);
+    //let functionConstraints = constraints(filePath);
 
     // Generate test cases
-    generateTestCases(filePath, functionConstraints);
+    generateTestCases(filePath);
 
 })();

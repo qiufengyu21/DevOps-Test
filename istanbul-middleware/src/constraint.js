@@ -5,7 +5,7 @@ const fs      = require('fs');
 const Random  = require('random-js');
 const _       = require('lodash');
 const randexp = require('randexp');
-
+var Regex = require("regex");
 
 
 // Set options
@@ -72,12 +72,58 @@ function constraints(filePath) {
                         var method = child.expression.callee.property.name;
                         var url = child.expression.arguments[0].value;
                         var http = "http://127.0.0.1";
-                        console.log(method + " " + url);
+                        //console.log(method + " " + url);
+                        //console.log("***"+method);
 
+
+                        ///*
+                        if(method === 'post'){
+                            //console.log("POST");
+                            content += "request({\n\t" + 
+                            "url: \"" + http + url + "\",\n\t" +
+                            "method: \"" + method + "\",\n\t" +
+                            "json: " + "{'kind': 'AMZN'}" + "\n})\n\n"
+                        }
+                        else if(method === 'get'){
+                            //console.log("GET");
+                            if(url === '/api/study/vote/status'){
+                                content += "request({\n\t" + 
+                                           "url: \"" + http + url + "\",\n\t" +
+                                           "method: \"" + method + "\"" +
+                                           "\n})\n\n"
+                            }
+                            else if(url === '/api/study/listing'){
+                                content += "request({\n\t" + 
+                                           "url: \"" + http + url + "\",\n\t" +
+                                           "method: \"" + method + "\"" +
+                                           "\n})\n\n"
+                            }
+                            else{
+                                const Regex = /^(.*[\\\/])/;
+                                const str = url;
+                                let m;
+
+                                if ((m = Regex.exec(str)) !== null) {
+                                    //console.log(m[0]);
+                                    var result = m[0];
+                                }
+                                content += "request({\n\t" + 
+                                           "url: \"" + http + result + Random.integer(0,100)(engine) + "\",\n\t" +
+                                           "method: \"" + method + "\"" +
+                                           "\n})\n\n"
+                            }
+                        }
+                        else{
+                            //console.log("OPTIONS request...");
+                        }
+                        //*/
+
+                        /*
                         content += "request({\n\t" + 
                         "url: \"" + http + url + "\",\n\t" +
                         "method: \"" + method + "\",\n\t" +
                         "json: " + "{'kind': 'AMZN'}" + "\n})\n\n"
+                        */
                         
                     }
                 }
