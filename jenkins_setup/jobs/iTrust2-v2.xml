@@ -35,7 +35,7 @@ mv src/main/resources/hibernate.properties.template src/main/resources/hibernate
 mv pom-data.xml pom.xml &amp;&amp; 
 mvn process-test-classes &amp;&amp; 
 mv pom-main.xml pom.xml &amp;&amp; 
-mvn clean test verify checkstyle:checkstyle</command>
+mvn clean test</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
