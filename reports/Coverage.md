@@ -118,22 +118,18 @@ Following are the detailed report regarding steps involved to perform this miles
 
         - **Configure job for iTrust**
         
-            We clone fuzzer code and create iTrust build through cli JAR of jenkins.
-
-        - **Run job for iTrust**
-        
-            Runs the created job for building iTrust application through cli JAR of jenkins.
+            We clone fuzzer code and configure iTrust build job through cli JAR of jenkins. Here we just configure the job for iTrust. Job will actually be triggered from fuzzer.yml. This playbook first invokes fuzzer and after each fuzzing it builds the iTrust.
 
         - **Configure job for checkbox.io**
         
-            We clone fuzzer code and create checkbox.io build through cli JAR of jenkins.
-            
-        - **Run job for checkbox.io**
-        
-            Runs the created job for building checkbox.io application through cli JAR of jenkins.
+            We configure checkbox.io build job through cli JAR of jenkins. Here we just configure the job for iTrust. Job will actually be triggered from autotest.yml. This playbook first generates the automatic tests and then we run those tests while we build the checkbox.io.
 
     8. [fuzzer.yml](/jenkins_setup/tasks/fuzzer.yml)
 
-        Purpose of this playbook is to execute the code for fuzzer. After fuzzing is done we execute the test prioritization and we check the report we can check the report of both. Both these are explained in subsequent sections.
+        Purpose of this playbook is to execute the code of fuzzer. After each fuzz jenkins job for iTrust is triggered. The fuzzer is explained in detail in subsequent sections.
+    
+    9. [autotest.yml](/jenkins_setup/tasks/autotest.yml)
+
+        Purpose of this playbook is to execute the code for automated test generation. After that is done jenkins job build for checkbox.io is triggered. Automated test generation is explained in further sections.
 
 [<<< Previous](../README.md) | [Next >>>](/reports/Fuzzer.md)
