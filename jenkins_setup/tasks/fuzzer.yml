@@ -1,6 +1,6 @@
 - name: copy properties file template
   template:
-    src: "{{ ansible_env.HOME }}../fuzzer/test.properties"
+    src: "{{ playbook_dir }}../fuzzer/test.properties"
     dest: "{{ ansible_env.HOME }}/"
 
 - name: copy fuzzer jar
