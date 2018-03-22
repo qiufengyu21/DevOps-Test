@@ -78,6 +78,7 @@ function constraints(filePath) {
 
                         // POST request
                         var kindObject = [{'kind': 'AMZN'},{'kind': 'SURFACE'},{'kind': 'IPADMINI'},{'kind': 'GITHUB'},{'kind': 'BROWSERSTACK'}];
+                        var createObject = [{'invitecode': 'XXX', 'studyKind': 'survey'},{'invitecode': 'RESEARCH', 'studyKind': 'survey'},{'invitecode': 'RESEARCH', 'studyKind': 'dataStudy'}];
                         if(method === 'post'){
                             console.log(url);
                             if(url === '/api/study/admin/notify/'){
@@ -86,6 +87,15 @@ function constraints(filePath) {
                                     "url: \"" + http + url + "\",\n\t" +
                                     "method: \"" + method + "\",\n\t" +
                                     "json: " + JSON.stringify(kindObject[i]) + "\n})\n\n"
+                                }
+                            }
+
+                            if(url === '/api/study/create'){
+                                for(i = 0; i < createObject.length; i++){
+                                    content += "request({\n\t" + 
+                                    "url: \"" + http + url + "\",\n\t" +
+                                    "method: \"" + method + "\",\n\t" +
+                                    "json: " + JSON.stringify(createObject[i]) + "\n})\n\n"
                                 }
                             }
                         }
