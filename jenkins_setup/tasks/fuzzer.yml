@@ -19,3 +19,8 @@
 
 - name: Run test prioritization code
   shell: "node {{ tpa_home }}/main.js {{ jenkins_home }}/workspace{{ job_name }}"
+  register: tpa_res
+
+- name: see TPA output
+  debug:
+    msg: "{{ tpa_res.stdout }}"
