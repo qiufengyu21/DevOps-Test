@@ -1,7 +1,7 @@
 let request = require('request');
 
 request({
-	url: "http://127.0.0.1/api/study/load/77",
+	url: "http://127.0.0.1/api/study/load/58",
 	method: "get"
 })
 
@@ -11,7 +11,7 @@ request({
 })
 
 request({
-	url: "http://127.0.0.1/api/study/status/77",
+	url: "http://127.0.0.1/api/study/status/98",
 	method: "get"
 })
 
@@ -39,17 +39,17 @@ request({
 })
 
 request({
-	url: "http://127.0.0.1/api/study/admin/43",
+	url: "http://127.0.0.1/api/study/admin/88",
 	method: "get"
 })
 
 request({
-	url: "http://127.0.0.1/api/study/admin/download/12",
+	url: "http://127.0.0.1/api/study/admin/download/96",
 	method: "get"
 })
 
 request({
-	url: "http://127.0.0.1/api/study/admin/assign/47",
+	url: "http://127.0.0.1/api/study/admin/assign/4",
 	method: "get"
 })
 

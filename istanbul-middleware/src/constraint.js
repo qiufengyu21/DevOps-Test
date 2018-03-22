@@ -80,7 +80,7 @@ function constraints(filePath) {
                         var kindObject = [{'kind': 'AMZN'},{'kind': 'SURFACE'},{'kind': 'IPADMINI'},{'kind': 'GITHUB'},{'kind': 'BROWSERSTACK'}];
                         var createObject = [{'invitecode': 'XXX', 'studyKind': 'survey'},{'invitecode': 'RESEARCH', 'studyKind': 'survey'},{'invitecode': 'RESEARCH', 'studyKind': 'dataStudy'}];
                         if(method === 'post'){
-                            console.log(url);
+                            //console.log(url);
                             if(url === '/api/study/admin/notify/'){
                                 for(i = 0; i < kindObject.length; i++){
                                     content += "request({\n\t" + 
