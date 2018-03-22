@@ -1,4 +1,4 @@
-[Test and Analysis Milestone](../README.md) | [Coverage/Jenkins Support](/reports/Coverage.md) | [Test prioritization analysis](/reports/TestPrioritization.md)
+[Test and Analysis Milestone](../README.md) | [Coverage/Jenkins Support](/reports/Coverage.md) | [Test Prioritization Analysis](/reports/TestPrioritization.md)
 
 [Automated Test Generation](/reports/TestGeneration.md) | [Team Details](/reports/Team.md) | [Screencast](/reports/Screencast.md)
 
