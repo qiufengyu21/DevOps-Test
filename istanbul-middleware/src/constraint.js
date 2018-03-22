@@ -1,46 +1,10 @@
 // Core/NPM Modules
 const esprima = require("esprima");
-const faker   = require("faker");
 const fs      = require('fs');
-const Random  = require('random-js');
-const _       = require('lodash');
-const randexp = require('randexp');
 var Regex = require("regex");
 
-
 // Set options
-faker.locale  = "en";
 const options = { tokens: true, tolerant: true, loc: true, range: true };
-
-
-
-// Create random generator engine
-const engine = Random.engines.mt19937().autoSeed();
-
-
-/**
- * Constraint class. Represents constraints on function call parameters.
- *
- * @property {String}                                                          ident      Identity of the parameter mapped to the constraint.
- * @property {String}                                                          expression Full expression string for a constraint.
- * @property {String}                                                          operator   Operator used in constraint.
- * @property {String|Number}                                                   value      Main constraint value.
- * @property {String|Number}                                                   altvalue   Constraint alternative value.
- * @property {String}                                                          funcName   Name of the function being constrained.
- * @property {'fileWithContent'|'fileExists'|'integer'|'string'|'phoneNumber'} kind       Type of the constraint.
- */
-class Constraint {
-    constructor(properties){
-        this.ident = properties.ident;
-        this.expression = properties.expression;
-        this.operator = properties.operator;
-        this.value = properties.value;
-        this.altvalue = properties.altvalue;
-        this.funcName = properties.funcName;
-        this.kind = properties.kind;
-    }
-}
-
 
 /**
  * Generate function parameter constraints for an input file
@@ -52,8 +16,6 @@ class Constraint {
 function constraints(filePath) {
 
     let content = "";
-    // Initialize function constraints directory
-    let functionConstraints = {};
 
     // Read input file and parse it with esprima.
     let buf = fs.readFileSync(filePath, "utf8");
@@ -177,28 +139,6 @@ function traverse(object, visitor) {
         }
     }
 }
-
-
-/**
- * Return the name of a function node.
- */
-function functionName(node) {
-    return node.id ? node.id.name : '';
-}
-
-
-/**
- * Generates an integer value based on some constraint.
- *
- * @param   {Number}  constraintValue Constraint integer.
- * @param   {Boolean} greaterThan     Whether or not the concrete integer is greater than the constraint.
- * @returns {Number}                  Integer satisfying constraints.
- */
-function createConcreteIntegerValue(constraintValue, greaterThan) {
-    if( greaterThan ) return Random.integer(constraintValue + 1, constraintValue + 10)(engine);
-    else return Random.integer(constraintValue - 10, constraintValue - 1)(engine);
-}
-
 
 // Export
 module.exports = constraints;
