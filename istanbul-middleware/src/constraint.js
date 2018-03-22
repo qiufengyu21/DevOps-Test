@@ -76,14 +76,20 @@ function constraints(filePath) {
                         //console.log("***"+method);
 
 
-                        ///*
+                        // POST request
+                        var kindObject = [{'kind': 'AMZN'},{'kind': 'SURFACE'},{'kind': 'IPADMINI'},{'kind': 'GITHUB'},{'kind': 'BROWSERSTACK'}];
                         if(method === 'post'){
-                            //console.log("POST");
-                            content += "request({\n\t" + 
-                            "url: \"" + http + url + "\",\n\t" +
-                            "method: \"" + method + "\",\n\t" +
-                            "json: " + "{'kind': 'AMZN'}" + "\n})\n\n"
+                            console.log(url);
+                            if(url === '/api/study/admin/notify/'){
+                                for(i = 0; i < kindObject.length; i++){
+                                    content += "request({\n\t" + 
+                                    "url: \"" + http + url + "\",\n\t" +
+                                    "method: \"" + method + "\",\n\t" +
+                                    "json: " + JSON.stringify(kindObject[i]) + "\n})\n\n"
+                                }
+                            }
                         }
+                        // GET request 
                         else if(method === 'get'){
                             //console.log("GET");
                             if(url === '/api/study/vote/status'){
@@ -113,6 +119,7 @@ function constraints(filePath) {
                                            "\n})\n\n"
                             }
                         }
+                        // We don't deal with OPTIONS request
                         else{
                             //console.log("OPTIONS request...");
                         }
