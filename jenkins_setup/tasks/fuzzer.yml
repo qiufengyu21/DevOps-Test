@@ -18,7 +18,7 @@
   become: yes
 
 - name: Run test prioritization code
-  shell: "node {{ tpa_home }}/main.js {{ jenkins_home }}/workspace{{ job_name }}"
+  shell: "node {{ tpa_home }}/main.js {{ jenkins_home }}/builds/{{ job_name }}"
   register: tpa_res
 
 - name: see TPA output
