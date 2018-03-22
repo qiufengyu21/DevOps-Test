@@ -132,4 +132,8 @@ Following are the detailed report regarding steps involved to perform this miles
         
             Runs the created job for building checkbox.io application through cli JAR of jenkins.
 
+    8. [fuzzer.yml](/jenkins_setup/tasks/fuzzer.yml)
+
+        Purpose of this playbook is to execute the code for fuzzer. After fuzzing is done we execute the test prioritization and we check the report we can check the report of both. Both these are explained in subsequent sections.
+
 [<<< Previous](../README.md) | [Next >>>](/reports/Fuzzer.md)
