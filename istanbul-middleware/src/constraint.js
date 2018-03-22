@@ -1,10 +1,14 @@
 // Core/NPM Modules
 const esprima = require("esprima");
 const fs      = require('fs');
+const Random = require('random-js');
 var Regex = require("regex");
 
 // Set options
 const options = { tokens: true, tolerant: true, loc: true, range: true };
+
+// Create random generator engine
+const engine = Random.engines.mt19937().autoSeed();
 
 /**
  * Generate function parameter constraints for an input file
