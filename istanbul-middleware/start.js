@@ -3,7 +3,7 @@ var nopt = require('nopt'),
     config = nopt({ coverage: Boolean }),
     istanbulMiddleware = require('istanbul-middleware'),
     coverageRequired = config.coverage,
-    port = 8888;
+    port = 3002;
 
 if (coverageRequired) {
     console.log('Turning on coverage; ensure this is not production');
