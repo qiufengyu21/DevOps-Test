@@ -10,3 +10,12 @@
 
 - name: Run fuzzer
   shell: "java -jar {{ ansible_env.HOME }}/fuzzer.jar"
+
+- name: Install test prioritization code dependancy
+  shell: "npm install"
+  args:
+    chdir: "{{ tpa_home }}"
+  become: yes
+
+- name: Run test prioritization code
+  shell: "node {{ tpa_home }}/main.js {{ jenkins_home }}/workspace{{ job_name }}"
