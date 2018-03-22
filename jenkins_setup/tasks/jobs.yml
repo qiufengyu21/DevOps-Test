@@ -18,12 +18,12 @@
     path: "{{ ansible_env.HOME }}/iTrust2-v2.xml"
     state: absent
 
-- name: run itrust2
-  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build {{ job_name }} --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
+#- name: run itrust2
+#  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} build {{ job_name }} --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }}"
 
-- name: HACK wait for build to finish
-  pause:
-    prompt: "Has iTrust2-v2 finished building?"
+#- name: HACK wait for build to finish
+#  pause:
+#    prompt: "Has iTrust2-v2 finished building?"
 
 #- name: configure checkboxio
 #  shell: "java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} create-job checkboxio --username {{ jenkins_admin_username }} --password {{ jenkins_admin_password }} < {{ dir }}/checkboxio-job.xml"
