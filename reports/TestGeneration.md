@@ -4,5 +4,11 @@
 
 Automated Test Generation
 ----------------------------------
+Describe your approach for automated test generation. How many tests were you able to achieve and what was the resulting coverage?
+
+
+The automated test generation for this milestone was a combination of unit test and integration test.
+
+
 
 [<<< Previous](/reports/TestPrioritization.md) | [Next >>>](/reports/Team.md)
