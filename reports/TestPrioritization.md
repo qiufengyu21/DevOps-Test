@@ -15,6 +15,10 @@ For test prioritization we wrote a javascript file to collect and prioritize the
 
 We followed this order because, failing tests are always more useful than the passing tests. So we gave the highest priority to the test which failed repeatedly. After that we chose the test cases which can be tested in least amount of time. We again chose this criteria to prioritize test cases because we can give priority to those test cases which can be tested in less amount of time. Overall using this strategy we can discover more bugs in less amount of time.
 
+Following screenshot shows the test prioritization analysis.
+
+![Test Prioritization](/reports/screenshots/test_prioritization.png "Test Prioritization")
+
 **Why do you think those tests were ranked the highest?**
 
 The highest ranked test cases failed repeatedly. Thare may be several reasons behind that. After performing fuzzing the part these test cases were testing was very much strictly expecting structured input. Randomizing the input caused them failing most number of times. Also these tests took very less time to execute. So the code that it was testing might be very sensitive, so that it failed as soon as we provided small amount of random input.
