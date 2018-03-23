@@ -14,5 +14,6 @@ We were able to successfully generate 15 tests to hit different endpoints for al
 After running the test, the coverage increased to:
 ![alt text](https://github.ncsu.edu/sjha5/BuildTestAnalysis/blob/master/coverage_after.png)
 
+After running the test, all API routes coverage have been improved except for the upload.js file, it is because the server never had a route for /api/upload, it was commented out.
 
 [<<< Previous](/reports/TestPrioritization.md) | [Next >>>](/reports/Team.md)
