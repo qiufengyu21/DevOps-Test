@@ -30,7 +30,7 @@
     job_name: "iTrust2-v2"
     git_home: "{{ ansible_env.HOME }}/{{ job_name }}"
     trigger_token: "trigger_token"
-    tpa_home: "{{ ansible_env.HOME }}../TestPrioritization"
+    tpa_home: "{{ playbook_dir }}/../TestPrioritization"
 
   tasks:
     - import_tasks: tasks/prereqs.yml
