@@ -6,6 +6,7 @@ var express = require('express'),
 	//upload = require('./routes/upload.js'),
 	create = require('./routes/create.js'),
 	study = require('./routes/study.js'),
+	coverage = require('istanbul-middleware'), // added istanbul-middleware module
 	admin = require('./routes/admin.js');
 
 var app = express();
@@ -83,7 +84,7 @@ app.post('/api/study/admin/notify/', admin.notifyParticipant);
 //app.get('/api/design/survey/vote/status', votes.status );
 //app.get('/api/design/survey/vote/stat/:id', votes.getSurveyStats );
 
-
-
+// added istanbul-middleware handler
+app.use('/coverage', coverage.createHandler({ verbose: true, resetOnGet: true }));
 app.listen(process.env.MONGO_PORT);
 console.log('Listening on port 3002...');
