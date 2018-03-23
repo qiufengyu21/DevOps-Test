@@ -11,7 +11,7 @@ Team details of our project team is as mentioned below.
 -------------------------|-----------------|---------------------|
 |  Karan Jadhav          |    kjadhav             | Worked on ansible playbook to set up jenkins, ansible playbooks integrate each part, fuzzer, and automated commit generation. Worked on screencast.                   |
 |  Shashank Jha          |    sjha5        | Worked on fuzzer, automated commit generations and automated test generation.|
-|  Qiufeng Yu            |    qyu4         | Worked on automated test generation.|
+|  Qiufeng Yu            |    qyu4         | Worked on automate test generation, and used istanbul-middleware to track the coverage of all API routes|
 |  Bhavik Patel          |    bcpatel      | Worked on fuzzer, test prioritization and automated test generation. Worked on report writing.|
 
 [<<< Previous](/reports/TestGeneration.md) | [Next >>>](/reports/Screencast.md)
