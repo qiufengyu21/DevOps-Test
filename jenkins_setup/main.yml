@@ -15,7 +15,7 @@
       - postbuildscript
       - postbuild-task
       - jacoco
-    jenkins_java_args: 'JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"'
+    jenkins_java_args: 'JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Xmx2048m"'
     jenkins_home: /var/lib/jenkins
     jenkins_hostname: 127.0.0.1
     jenkins_http_port: 9080
