@@ -19,6 +19,9 @@
     chdir: "{{ tpa_home }}"
   become: yes
 
+- pause:
+    prompt: "start TPA?"
+
 - name: Run test prioritization code
   shell: "node {{ tpa_home }}/main.js {{ jenkins_home }}/jobs/{{ job_name }}"
   register: tpa_res

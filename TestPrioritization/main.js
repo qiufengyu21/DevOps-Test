@@ -52,6 +52,7 @@ function getTestResults(callback){
             }
         }catch(e){
             console.log("Please enter correct directory path.")
+            console.log(e);
         }
         return callback(contents);
     }); 
