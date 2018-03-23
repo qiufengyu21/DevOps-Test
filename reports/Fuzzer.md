@@ -5,7 +5,7 @@
 Automated Commit Generation - Commit Fuzzer
 ----------------------------------
 
-This section describes the [auto-committer](/fuzzer/src/main/java/com/autocommiter/AutoCommitter.java) and [fuzzer.](/fuzzer/src/main/java/com/fuzzer/Fuzzer.java). We have written java code which will read all the java files that are present in iTrust code and then we will apply fuzzing to it. We have used java parser to get the Abstract Syntax Tree of each java file. Then we used visitor to each node of the tree and performed following manipulations.
+This section describes the [auto-committer](/fuzzer/src/main/java/com/autocommitter/AutoCommitter.java) and [fuzzer.](/fuzzer/src/main/java/com/fuzzer/Fuzzer.java) We have written java code which will read all the java files that are present in iTrust code and then we will apply fuzzing to it. We have used java parser to get the Abstract Syntax Tree of each java file. Then we used visitor to each node of the tree and performed following manipulations.
 
 1. String Manipulations
 

@@ -10,6 +10,7 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.BinaryExpr.Operator;
+import com.github.javaparser.ast.expr.IntegerLiteralExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
@@ -56,9 +57,15 @@ public class Fuzzer {
 						}
 						public void visit(StringLiteralExpr n, Object arg) {
 							super.visit(n, arg);
-							System.out.println("Expression: "+n);
-							n.setString(StringUtils.reverse(n.getValue()));
-							System.out.println("Expression: "+n);
+							if (randomBoolean()){
+								n.setString(StringUtils.reverse(n.getValue()));
+							}
+						}
+						public void visit(IntegerLiteralExpr n, Object arg) {
+							super.visit(n, arg);
+							if(randomBoolean() && n.getValue().contains("0")) {
+								n.setInt(Integer.parseInt(StringUtils.replace(n.getValue(), "0", "1")));
+							}
 						}
 					}.visit(cu, null);
 				} catch (Exception e) {
