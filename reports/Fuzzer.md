@@ -39,7 +39,7 @@ We have performed randomization in both choosing the files and performing above 
 
 Following is the jacoco report screenshot.
 
-![Jacoco Report](/reports/screenshots/jacoco_report.jpeg?raw=true "Jacoco Report")
+![Jacoco Report](/reports/screenshots/jacoco_report.png?raw=true "Jacoco Report")
 
 **What type of problems do you think the fuzzer discovered?**
 
