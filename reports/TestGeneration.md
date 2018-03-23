@@ -4,14 +4,11 @@
 
 Automated Test Generation
 ----------------------------------
-The automated test generation for this milestone was a combination of unit test and integration test. We used the Test Generation Workshop as a starting point and guidance and came up with an algorithm to analyze the checkbox.io's server-side code using esprima. We traversed the entire AST tree of the server.js file and was able to extract all API routes. Once all API routes have been retrieved from the source code, we then pass the routes to a test generator, which generates simple test cases by using the nodejs request module: ```request({
-	url: "http://127.0.0.1/api/study/vote/status",
-	method: "get"
-})```
+The automated test generation for this milestone was a combination of unit test and integration test. We used the Test Generation Workshop as a starting point and guidance and came up with an algorithm to analyze the checkbox.io's server-side code using esprima. We traversed the entire AST tree of the server.js file and was able to extract all API routes. Once all API routes have been retrieved from the source code, we then pass the routes to a test generator, which generates simple test cases by using the nodejs request module: ```request({ url: "http://127.0.0.1/api/study/vote/status", method: "get" })```
 
-The automatically generated test cases were stored in a seperate file, so that we can easily run it when the checkbox.io server is up and running. Meanwhile, we put ```istanbul-middleware``` sitting between the tests and the server to gather information about the coverage.
+The automatically generated test cases were stored in a separate file so that we can easily run it when the checkbox.io server is up and running. Meanwhile, we put ```istanbul-middleware``` sitting between the tests and the server to gather information about the coverage.
 
+We were able to successfully generate 15 tests to hit different endpoints for almost all the API routes. The original coverage for each API routes are:
 
-We were able to successfully generate 15 tests to hit different endpoints for almost all the API routes.
 
 [<<< Previous](/reports/TestPrioritization.md) | [Next >>>](/reports/Team.md)
