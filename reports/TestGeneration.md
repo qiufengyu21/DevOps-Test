@@ -8,7 +8,11 @@ The automated test generation for this milestone was a combination of unit test 
 
 The automatically generated test cases were stored in a separate file so that we can easily run it when the checkbox.io server is up and running. Meanwhile, we put ```istanbul-middleware``` sitting between the tests and the server to gather information about the coverage.
 
-We were able to successfully generate 15 tests to hit different endpoints for almost all the API routes. The original coverage for each API routes are:
+We were able to successfully generate 15 tests to hit different endpoints for almost all the API routes. The original coverages for each API routes are:
+![alt text](https://github.ncsu.edu/sjha5/BuildTestAnalysis/blob/master/coverage_before.png)
+
+After running the test, the coverage increased to:
+![alt text](https://github.ncsu.edu/sjha5/BuildTestAnalysis/blob/master/coverage_after.png)
 
 
 [<<< Previous](/reports/TestPrioritization.md) | [Next >>>](/reports/Team.md)
