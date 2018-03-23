@@ -7,6 +7,6 @@ Screencast
 
 Screencast for the milestone has been uploaded at below location.
 
-[Test and Analysis](https://www.youtube.com/playlist?list=PL2CC1XYOJDJ0oXKHSiChSaAx7KWpnNyuc)
+[Test and Analysis Milestone](https://www.youtube.com/playlist?list=PL2CC1XYOJDJ0oXKHSiChSaAx7KWpnNyuc)
 
 [<<< Previous](/reports/Team.md)
