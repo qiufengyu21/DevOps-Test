@@ -11,7 +11,7 @@ Screencast for the milestone has been uploaded at below location.
 
 ### Automated Test Generation
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VDcdgRGKSoE/0.jpg)](https://www.youtube.com/watch?v=VDcdgRGKSoE)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VDcdgRGKSoE/1.jpg)](https://www.youtube.com/watch?v=VDcdgRGKSoE)
 
 
 [<<< Previous](/reports/Team.md)
