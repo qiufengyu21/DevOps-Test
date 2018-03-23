@@ -38,7 +38,7 @@ This section describes the [auto-committer](/fuzzer/src/main/java/com/autocommit
 We have performed randomization in both choosing the files and performing above operations. So not all files are chosen and also in chosen file not all operations are performed for all expressions. For some expressions it may be performed and for some it won't be performed. After making these changes we commit the changes and perform the jenkins build. And after build is completed we again reset the changes performed so actual code is not changed. 
 
 Following is the jacoco report screenshot.
-![Jacoco Report](/docs/screenshots/jacoco_report.jpeg?raw=true "Jacoco Report")
+![Jacoco Report](/reports/screenshots/jacoco_report.jpeg?raw=true "Jacoco Report")
 
 **What type of problems do you think the fuzzer discovered?**
 
