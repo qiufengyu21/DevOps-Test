@@ -7,10 +7,6 @@ Screencast
 
 Screencast for the milestone has been uploaded at below location.
 
-[Screencast link](http://tiny.cc/screencast)
-
-### Automated Test Generation
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VDcdgRGKSoE/1.jpg)](https://www.youtube.com/watch?v=VDcdgRGKSoE)
-
+[Test and Analysis](https://www.youtube.com/playlist?list=PL2CC1XYOJDJ0oXKHSiChSaAx7KWpnNyuc)
 
 [<<< Previous](/reports/Team.md)
