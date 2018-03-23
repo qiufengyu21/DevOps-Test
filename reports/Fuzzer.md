@@ -43,7 +43,7 @@ Following is the jacoco report screenshot.
 
 **What type of problems do you think the fuzzer discovered?**
 
-Fuzzing is a technique in which we give some random or unexpected input to a computer program and we observe the behaviour of a computer program. After performing fuzzing some tescases never failed, so we can discover that either the tests written are not useful or we still need to improve the fuzzer functionalities. It also helped in discovering issues such as race conditions and deadlocks, memory leaks and undefined behaviour. It helped in discovering control flow bugs, like we expect that "<" is correct conditional operator, but we may actually need "<=" at that place for correct behaviour.
+Fuzzing is a technique in which we give some random or unexpected input to a computer program and we observe the behaviour of a computer program. After performing fuzzing some tescases never failed, so we can discover that either the tests written are not useful or we still need to improve the fuzzer functionalities. This fuzzer mostly helped in finding issues with control flow. This is because we manipulated binary operators in code files which resulted in alteration of flows. It helped in discovering control flow bugs, like we expect that "<" is correct conditional operator, but we may actually need "<=" at that place for correct behaviour.
 
 **What are some ways fuzzing operations could be extended in the future?**
 
